@@ -9,10 +9,9 @@ import { z } from "zod";
 
 interface Props {
   id: number;
-  path: string;
 }
 
-const DeleteButton = ({ id, path }: Props) => {
+const DeleteButton = ({ id }: Props) => {
   const pathname = usePathname();
   async function deleteEmployeeHandler(
     values: z.infer<typeof IdEmployeeSchema>
@@ -31,7 +30,7 @@ const DeleteButton = ({ id, path }: Props) => {
     <Button
       className="bg-red-600 hover:bg-red-400"
       type="submit"
-      onClick={() => deleteEmployeeHandler({ id, path })}
+      onClick={() => deleteEmployeeHandler({ id })}
     >
       Delete
     </Button>
