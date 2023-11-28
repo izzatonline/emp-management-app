@@ -22,9 +22,7 @@ import {
 } from "@/components/ui/alert-dialog";
 
 import React from "react";
-import { deleteEmployee, getAllUsers } from "@/lib/actions/employee.action";
-import { z } from "zod";
-import { IdEmployeeSchema } from "@/lib/validations";
+import { getAllUsers } from "@/lib/actions/employee.action";
 import DeleteButton from "@/components/DeleteButton";
 
 const Home = async () => {
@@ -46,41 +44,58 @@ const Home = async () => {
           <>
             <Card key={employee.id}>
               <CardHeader key={employee.id}>
-                <CardTitle key={employee.id}>
-                  <Avatar key={employee.id}>
-                    <AvatarImage src={employee.avatar} key={employee.id} />
-                    <AvatarFallback key={employee.id}>
-                      {employee.id}
-                    </AvatarFallback>
-                  </Avatar>
-                </CardTitle>
-                <CardDescription key={employee.id}>
-                  {employee.email}
-                </CardDescription>
-                <CardDescription key={employee.id}>
-                  <span className="text-black truncate text-sm font-medium leading-none mt-4">
-                    First Name :
-                  </span>{" "}
-                  {employee.first_name}
-                </CardDescription>
-                <CardDescription key={employee.id}>
-                  <span className="text-black truncate text-sm font-medium leading-none mt-1">
-                    Last Name :
-                  </span>{" "}
-                  {employee.last_name}
-                </CardDescription>
-                <CardDescription key={employee.id}>
-                  <span className="text-black truncate text-sm font-medium leading-none mt-1">
-                    Role :
-                  </span>{" "}
-                  {employee.role}
-                </CardDescription>
-                <CardDescription key={employee.id}>
-                  <span className="text-black truncate text-sm font-medium leading-none mt-1">
-                    Salary :
-                  </span>{" "}
-                  RM {employee.salary}
-                </CardDescription>
+                <div className="flex justify-between">
+                  <CardDescription key={employee.id}>
+                    {employee.email}
+                  </CardDescription>
+                  <CardDescription key={employee.id}>
+                    <span className="text-black truncate text-sm font-medium leading-none mt-4">
+                      ID:
+                    </span>{" "}
+                    {employee.id}
+                  </CardDescription>
+                  <CardTitle key={employee.id}>
+                    <Avatar key={employee.id}>
+                      <AvatarImage
+                        src={employee.avatar}
+                        key={employee.id}
+                        width={20}
+                      />
+                      <AvatarFallback key={employee.id}>
+                        {employee.id}
+                      </AvatarFallback>
+                    </Avatar>
+                  </CardTitle>
+                </div>
+                <div className="grid grid-cols-2 justify-between">
+                  <CardDescription key={employee.id}>
+                    <span className="text-black truncate text-sm font-medium leading-none mt-4">
+                      First Name :
+                    </span>{" "}
+                    {employee.first_name}
+                  </CardDescription>
+
+                  <CardDescription key={employee.id}>
+                    <span className="text-black truncate text-sm font-medium leading-none mt-1">
+                      Last Name :
+                    </span>{" "}
+                    {employee.last_name}
+                  </CardDescription>
+                </div>
+                <div className="grid grid-cols-2 justify-between">
+                  <CardDescription key={employee.id}>
+                    <span className="text-black truncate text-sm font-medium leading-none mt-1">
+                      Role :
+                    </span>{" "}
+                    {employee.role}
+                  </CardDescription>
+                  <CardDescription key={employee.id}>
+                    <span className="text-black truncate text-sm font-medium leading-none mt-1">
+                      Salary :
+                    </span>{" "}
+                    RM {employee.salary}
+                  </CardDescription>
+                </div>
               </CardHeader>
               <CardFooter>
                 <div className="flex justify-start items-center gap-3">
@@ -92,14 +107,6 @@ const Home = async () => {
                   </Link>
                   <AlertDialog>
                     <AlertDialogTrigger asChild>
-                      {/* <Button variant="destructive">Show Dialog</Button> */}
-                      {/* <Button
-                        className="bg-red-600 hover:bg-red-400"
-                        type="submit"
-                        onClick={() => deleteEmployeeHandler(employee.id)}
-                      >
-                        Delete
-                      </Button> */}
                       <DeleteButton id={employee.id} />
                     </AlertDialogTrigger>
                     <AlertDialogContent>
@@ -127,7 +134,6 @@ const Home = async () => {
           </>
         ))}
       </div>
-      {/* <div>{employees}</div> */}
     </>
   );
 };
